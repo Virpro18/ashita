@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { BsBoxArrowRight } from "react-icons/bs";
+
 
 const Sidebar = () => {
   const [open, setOpen] = useState(Boolean);
@@ -21,8 +23,8 @@ const Sidebar = () => {
       >
         <div></div>
       </div>
-      <div className="fixed md:hidden top-2 left-2">
-        <button onClick={() => setOpen(!open)}>Open</button>
+      <div className="fixed md:hidden top-2 left-2 cursor-pointer scale-125">
+        <button onClick={() => setOpen(!open)} ><BsBoxArrowRight/></button>
       </div>
     </>
   );
