@@ -8,9 +8,9 @@ export const POST = async (req: NextRequest) => {
     let data;
     if (body.name) data = find.name(body.name);
     else if (body.id) data = find.id(body.id);
-    return NextResponse.json({ data });
+    return NextResponse.json({ data },{status:200});
   } catch {
     console.log(find.all())
-    return NextResponse.json({ data: find.all(), status: 200 });
+    return NextResponse.json({ data: find.all()},{status:200});
   }
 };

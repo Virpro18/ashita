@@ -4,7 +4,7 @@ export const fetchServer = async (
     method: string = "POST", // Menambahkan parameter untuk menentukan metode
     data?: unknown // Data hanya digunakan untuk metode yang memerlukan body
   ) => {
-    const baseURL = process.env.NRXT_PUBLIC_DEVELOPMENT_URL || ProdUrl;
+    const baseURL = process.env.NEXT_PUBLIC_DEVELOPMENT_URL || ProdUrl;
   
     // Opsi fetch
     const options: RequestInit = {
@@ -18,7 +18,7 @@ export const fetchServer = async (
     if (["POST", "PUT", "PATCH"].includes(method.toUpperCase()) && data) {
       options.body = JSON.stringify({ data });
     }
-  
+    console.log(`${baseURL}${endPoint}`)
     const res = await fetch(`${baseURL}${endPoint}`, options);
   
     // Periksa apakah respons berhasil

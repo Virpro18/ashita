@@ -23,7 +23,7 @@ const Sidebar = () => {
       >
         <div></div>
       </div>
-      <div className="fixed md:hidden top-2 left-2 cursor-pointer scale-125">
+      <div className="fixed md:hidden top-3 left-4 cursor-pointer scale-125">
         <button onClick={() => setOpen(!open)} ><BsBoxArrowRight/></button>
       </div>
     </>
