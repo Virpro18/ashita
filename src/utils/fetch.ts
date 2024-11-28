@@ -1,6 +1,6 @@
 "user server";
 
-export const fetchServer = async (
+export const  fetchServer = async (
   ProdUrl: string,
   endPoint: string,
   method: string = "GET", // Menambahkan parameter untuk menentukan metode
