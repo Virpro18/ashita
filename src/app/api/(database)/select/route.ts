@@ -16,11 +16,11 @@ export const POST = async (req: NextRequest) => {
 
 export const GET = (req: NextRequest) => {
   const data = req.nextUrl.searchParams.get("q");
-  const find = search("sample");
+  const find = search("projectList");
   if (!data) {
     return NextResponse.json({data:find.all()},{status:200})
   }
-  return NextResponse.json({ data: find.name(data) }, { status: 200 });
+  return NextResponse.json({ data: find.title(data) }, { status: 200 });
 };
 
 

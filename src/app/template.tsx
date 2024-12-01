@@ -10,7 +10,6 @@ export default function SpecialTemplate({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  console.log(pathname)
   let isFull = false
   if(pathname.startsWith('/search')) {
     isFull=true
