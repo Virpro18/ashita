@@ -15,3 +15,18 @@ export interface database {
     length: number,
     data: data[]
 }
+
+export interface ProjectData {
+  lenght: number;
+  data: ProjectData_SubData[];
+}
+
+export interface ProjectData_SubData {
+  id: string;
+  title: string;
+  description: string;
+  creator: string;
+  imageUrl: string;
+  projectURL: string;
+  date: string;
+}
