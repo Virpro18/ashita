@@ -10,7 +10,9 @@ const search = async ({ params }: { params: Promise<{ query: string }> }) => {
 
   return (
     <>
-      <h1>Search Results</h1>
+    <div className="w-full text-center p-2">
+      <h3 className="font-bold text-2xl text-color-secondary">Search Results</h3>
+    </div>
         <Cards data={data} />
     </>
   );

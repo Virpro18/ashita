@@ -7,10 +7,6 @@
   margin: 0;
   box-sizing: border-box;
 }
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(300px, 1fr));
-}
-
 .grid-cols-auto {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
 }

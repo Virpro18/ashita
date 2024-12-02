@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { BsBoxArrowRight } from "react-icons/bs";
 import { IoMdHome } from "react-icons/io";
+import { FaRegUserCircle } from "react-icons/fa";
 
 interface MobileOverlayProps {
   isOpen: boolean;
@@ -23,7 +24,7 @@ interface SidebarContentProps {
 }
 
 interface ToggleButtonProps {
-  isOpen:boolean;
+  isOpen: boolean;
   onClick: () => void;
 }
 
@@ -32,7 +33,7 @@ interface Props {
 }
 
 const Sidebar: React.FC<Props> = ({ isFull }) => {
-  let DeskW = "w-16";
+  let DeskW = "w-18";
   if (isFull) {
     DeskW = "w-0 opacity-0";
   }
@@ -57,7 +58,7 @@ const Sidebar: React.FC<Props> = ({ isFull }) => {
     <>
       <MobileOverlay isOpen={isOpen} onClose={toggleSidebar} />
       <SidebarContent isOpen={isOpen} widht={DeskW} navigation={navigation} />
-      <ToggleButton onClick={toggleSidebar} isOpen={isOpen}/>
+      <ToggleButton onClick={toggleSidebar} isOpen={isOpen} />
     </>
   );
 };
@@ -83,28 +84,40 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
       ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
     style={{ visibility: isOpen || widht !== "w-0" ? "visible" : "hidden" }}
   >
-    <nav className={`flex flex-col ${!isOpen ? `items-center` : null} `}>
+    <nav
+      className={`flex flex-col ${!isOpen ? `items-center` : null} relative`}
+    >
       {navigation.map((item, index) => (
         <Link
           href={item.href}
           key={index}
-          className={`flex items-center gap-2 my-2 hover:bg-black hover:bg-opacity-30 rounded-md ${isOpen ? 'p-2' : 'p-3'} transition-colors`}
+          className={`flex items-center gap-2 my-2 hover:bg-black hover:bg-opacity-30 rounded-md ${
+            isOpen ? "p-2" : "p-3   flex-col"
+          } transition-colors`}
         >
           <span>{item.icon}</span>
-          {!isOpen ? null : <span className="md:inline">{item.name}</span>}
+          <span className={`md:inline ${isOpen ? null : "text-sm"}`}>
+            {item.name}
+          </span>
         </Link>
       ))}
+      <div className="fixed bottom-6 flex gap-2">
+        <FaRegUserCircle className="text-2xl"></FaRegUserCircle>
+        {isOpen ? <span>User</span> : null}
+      </div>
     </nav>
   </div>
 );
 
-const ToggleButton: React.FC<ToggleButtonProps> = ({ onClick,isOpen }) => (
+const ToggleButton: React.FC<ToggleButtonProps> = ({ onClick, isOpen }) => (
   <div className="fixed flex md:top-2 top-3 md:left-10 sm:left-7 left-5 items-center gap-2 scale-125">
     <button
       onClick={onClick}
-      className="hover:bg-opacity-50 hover:text-white p-1 md:text-xl text-base rounded-md hover:bg-black transition-colors"
+      className="hover:bg-opacity-50 hover:text-color-last p-1 md:text-xl text-base rounded-md transition-colors"
     >
-       <BsBoxArrowRight className={`transform ${isOpen ? "rotate-180" : "rotate-0"}`} />
+      <BsBoxArrowRight
+        className={`transform ${isOpen ? "rotate-180" : "rotate-0"}`}
+      />
     </button>
     <Link href="/">
       <h1 className="md:text-2xl sm:text-xl text-base font-bold cursor-pointer text-color-secondary hover:text-color-last transition-colors">
