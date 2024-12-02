@@ -9,7 +9,7 @@ function Cards({ data }: CardsProps) {
   return (
     <div className="grid md:grid-cols-[repeat(4,minmax(300px,1fr))] sm:grid-cols-2 grid-cols-1 gap-4 p-4">
       {data.length <= 0 ? (
-        <h1 className="text-center text-xl font-bold text-gray-700">
+        <h1 className="text-center text-xl w-full font-bold text-gray-700">
           No Data
         </h1>
       ) : (

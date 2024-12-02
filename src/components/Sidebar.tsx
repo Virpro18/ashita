@@ -5,6 +5,8 @@ import { useState } from "react";
 import { BsBoxArrowRight } from "react-icons/bs";
 import { IoMdHome } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
+import { CiCirclePlus } from "react-icons/ci";
+
 
 interface MobileOverlayProps {
   isOpen: boolean;
@@ -48,9 +50,9 @@ const Sidebar: React.FC<Props> = ({ isFull }) => {
       href: "/",
     },
     {
-      name: "Search",
-      icon: <IoMdHome />,
-      href: "/search",
+      name: "Add",
+      icon: <CiCirclePlus />,
+      href: "/Add",
     },
   ];
 
@@ -91,7 +93,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
         <Link
           href={item.href}
           key={index}
-          className={`flex items-center gap-2 my-2 hover:bg-black hover:bg-opacity-30 rounded-md ${
+          className={`flex items-center gap-2 my-2 hover:bg-black hover:bg-opacity-30 rounded-md w-full ${
             isOpen ? "p-2" : "p-3   flex-col"
           } transition-colors`}
         >
@@ -101,10 +103,10 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
           </span>
         </Link>
       ))}
-      <div className="fixed bottom-6 flex gap-2">
+      <Link href="/user/dashboard" className={`fixed bottom-6 flex gap-2 cursor-pointer p-2 ${isOpen ? 'w-10/12':null}`}>
         <FaRegUserCircle className="text-2xl"></FaRegUserCircle>
         {isOpen ? <span>User</span> : null}
-      </div>
+      </Link>
     </nav>
   </div>
 );
