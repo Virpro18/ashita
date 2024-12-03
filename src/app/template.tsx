@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
@@ -10,10 +10,11 @@ export default function SpecialTemplate({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  let isFull = false
-  if(pathname.startsWith('/search')) {
-    isFull=true
+  let isFull = false;
+  if (pathname.startsWith("/search")) {
+    isFull = true;
   }
+  if (pathname.startsWith("/user/account/")) return <>{children}</>;
   return (
     <>
       <Header />

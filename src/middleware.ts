@@ -6,6 +6,10 @@ export const middleware = async (req: NextRequest) => {
     return NextResponse.next()
   } 
   if (pathname.startsWith("/api/")) {
+    if(pathname.startsWith("/user/")) {
+      console.log("ikitai")
+      return NextResponse.next();
+    }
     const auth = req.headers.get("authorization")
     if (!auth) {
         return NextResponse.json({message:"Unauthorized"},{status:401})
