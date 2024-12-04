@@ -30,3 +30,15 @@ export interface ProjectData_SubData {
   projectURL: string;
   date: string;
 }
+
+export interface UserType {
+  id: string;
+  name: string;
+  password: string;
+  email: string;
+  image: string;
+  role: string;
+}
+export interface UserData {
+  data: UserType[];
+}

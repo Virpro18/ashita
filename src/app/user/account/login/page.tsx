@@ -2,15 +2,21 @@
 
 import { useState,FormEvent } from 'react';
 import { fetchServer } from '@/utils/fetch';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
-  const [username, setUsername] = useState('');
+  const router = useRouter()
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = await fetchServer(`${process.env.NEXT_PUBLIC_PRODUCTION_URL}`, "/api/select", "POST")
+    const userData = {name,password}
+    const data = await fetchServer(`${process.env.NEXT_PUBLIC_PRODUCTION_URL}`, "/api/select", "POST",userData,"user")
+    if(data.status === 200){  
+      router.push("/")
+    }
     console.log(data)
   };
 
@@ -27,8 +33,8 @@ export default function LoginPage() {
               type="text"
               id="username"
               autoComplete='username'
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter your username"
               required
@@ -56,7 +62,7 @@ export default function LoginPage() {
             Login
           </button>
         </form>
-        {message && <p className="mt-4 text-center text-red-600">{message}</p>}
+        {/* {message && <p className="mt-4 text-center text-red-600">{message}</p>} */}
       </div>
     </div>
   );
