@@ -8,16 +8,19 @@ export default function LoginPage() {
   const router = useRouter()
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  // const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const userData = {name,password}
-    const data = await fetchServer(`${process.env.NEXT_PUBLIC_PRODUCTION_URL}`, "/api/select", "POST",userData,"user")
-    if(data.status === 200){  
-      router.push("/")
+    try {
+      const data = await fetchServer(`${process.env.NEXT_PUBLIC_PRODUCTION_URL}`, "/api/select", "POST",userData,"user")
+      if(data.status === 200){  
+        router.push("/")
+      }
+    } catch {
+      setMessage("Username or password is incorrect")
     }
-    console.log(data)
   };
 
   return (
@@ -62,7 +65,7 @@ export default function LoginPage() {
             Login
           </button>
         </form>
-        {/* {message && <p className="mt-4 text-center text-red-600">{message}</p>} */}
+        {message && <p className="mt-4 text-center text-red-600">{message}</p>}
       </div>
     </div>
   );
