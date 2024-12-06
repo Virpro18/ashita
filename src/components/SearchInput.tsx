@@ -1,7 +1,7 @@
 "use client"
 
 import { CiSearch } from "react-icons/ci";
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent, memo } from "react";
 import { useRouter } from "next/navigation";
 
 const SearchInput = () => {
@@ -41,4 +41,4 @@ const SearchInput = () => {
     )
 }
 
-export default SearchInput
+export default memo(SearchInput)

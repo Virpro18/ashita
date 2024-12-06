@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { usePathname } from "next/navigation"; // Import usePathname
 import { BsBoxArrowRight } from "react-icons/bs";
 import { IoMdHome } from "react-icons/io";
@@ -20,7 +20,7 @@ interface Props {
 }
 
 // Component
-const Sidebar: React.FC<Props> = ({ isFull }) => {
+const Sidebar: React.FC<Props> =({ isFull }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleSidebar = (): void => {
@@ -157,4 +157,4 @@ const ToggleButton: React.FC<{ onClick: () => void; isOpen: boolean }> = ({
   </div>
 );
 
-export default Sidebar;
+export default memo(Sidebar);
