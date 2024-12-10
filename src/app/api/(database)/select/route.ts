@@ -1,6 +1,6 @@
 import search from "@/utils/search";
 import { NextResponse, NextRequest } from "next/server";
-// import jwt from "jsonwebtoken";
+import { signToken, verifyToken } from "@/utils/joseAuth";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -11,13 +11,24 @@ export const POST = async (req: NextRequest) => {
       const data = find.id(datas.data.id);
       return NextResponse.json({ data }, { status: 200 });
     }
-    console.log(datas.data)
+    // console.log(datas.data);
     const data = find.user(datas.data);
-    console.log(data)
-    if(data.name && data.password) {
-      return NextResponse.json({ status: 200 });
+    // console.log(data);
+    if (!data) {
+      return NextResponse.json({}, { status: 404 });
     }
-    return NextResponse.json({}, { status: 404 });
+    const { name } = data;
+    const token = await signToken(name)
+
+    const verify = await verifyToken(token)
+    console.log(verify)
+    const response = NextResponse.json({ status: 200 })
+     response.cookies.set("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
+    return response
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: "Sakura Miko" }, { status: 417 });

@@ -15,8 +15,8 @@ export default function LoginPage() {
     const userData = {name,password}
     try {
       const data = await fetchServer(`${process.env.NEXT_PUBLIC_PRODUCTION_URL}`, "/api/select", "POST",userData,"user")
-      if(data.status === 200){  
-        router.push("/")
+      if(data.status === 200){
+        router.push("/user/dashboard")
       }
     } catch {
       setMessage("Username or password is incorrect")

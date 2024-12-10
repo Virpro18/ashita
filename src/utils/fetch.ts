@@ -27,8 +27,8 @@ export const  fetchServer = async (
     options.body = JSON.stringify({ datas });
   }
   console.log("eksekusi GET")
-  console.log(method)
-  console.log(`${baseURL}${endPoint}`);
+  // console.log(method)
+  // console.log(`${baseURL}${endPoint}`);
   const res = await fetch(`${baseURL}${endPoint}`, options);
 
   // Periksa apakah respons berhasil

@@ -15,7 +15,7 @@ const search = (database: string) => {
   const title = (query: string) => 
     data.find((item: ProjectData_SubData) => item.title.toLowerCase().includes(query.toLowerCase()));
 
-  const user = (query: user) => 
+  const user = (query: user):user => 
     data.find(
       (item: UserType) =>
         item.name.toLowerCase().includes(query.name.toLowerCase()) &&
