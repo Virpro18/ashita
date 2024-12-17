@@ -5,11 +5,11 @@ export default async function Home() {
     "https://vferdi7.vercel.app/",
     "api/select"
   );
-  console.log(data);
+  // console.log(data);
   return (
     <>
       <h1>fasdfasdfasd</h1>
-        <Cards data={data} />
+      <Cards data={data} />
     </>
   );
 }

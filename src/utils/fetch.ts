@@ -1,6 +1,6 @@
 "user server";
 
-export const  fetchServer = async (
+export const fetchServer = async (
   ProdUrl: string,
   endPoint: string,
   method: string = "GET", // Menambahkan parameter untuk menentukan metode
@@ -23,7 +23,7 @@ export const  fetchServer = async (
   if (["POST", "PUT", "PATCH"].includes(method.toUpperCase()) && data) {
     console.log("eksekusi !GET")
     const datas = {data,database}
-    console.log(datas)
+    // console.log(datas)
     options.body = JSON.stringify({ datas });
   }
   console.log("eksekusi GET")

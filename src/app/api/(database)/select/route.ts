@@ -5,7 +5,7 @@ import { signToken } from "@/utils/joseAuth";
 export const POST = async (req: NextRequest) => {
   try {
     const { datas } = await req.json();
-    console.log(datas);
+    // console.log(datas);
     const find = search(`${datas.database}`);
     if (datas.data.id) {
       const data = find.id(datas.data.id);
@@ -25,6 +25,11 @@ export const POST = async (req: NextRequest) => {
     const response = NextResponse.json({name, status: 200 })
      response.cookies.set("token", token, {
       httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
+     response.cookies.set("user", data.name, {
+      httpOnly: false,
       secure: true,
       sameSite: "strict",
     });

@@ -3,7 +3,7 @@ import * as jose from "jose";
 const secret = new TextEncoder().encode(
   process.env.NEXT_SECRET_JWT_KEY as string
 );
-console.log(secret)
+// console.log(secret)
 
 export const signToken = async (user: string, time:number) => {
   const token = await new jose.SignJWT({ user })

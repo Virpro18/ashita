@@ -9,6 +9,7 @@ export default function SpecialTemplate({
 }: {
   children: React.ReactNode;
 }) {
+  // const cookies = document.cookie
   const pathname = usePathname();
   let isFull = false;
   if (pathname.startsWith("/search")) {

@@ -10,10 +10,12 @@ const search = async ({ params }: { params: Promise<{ query: string }> }) => {
 
   return (
     <>
-    <div className="w-full p-2">
-      <h3 className="font-bold text-2xl text-color-secondary">Search Results</h3>
-    </div>
-        <Cards data={data} />
+      <div className="w-full p-2">
+        <h3 className="font-bold text-2xl text-color-secondary">
+          Search Results
+        </h3>
+      </div>
+      <Cards data={data} />
     </>
   );
 };

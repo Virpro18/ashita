@@ -26,7 +26,7 @@ const handleApiRoutes = async (req: NextRequest) => {
   // req.method()
 
     const valid = await verifyToken(auth)
-    console.log(valid);
+    // console.log(valid);
     return valid.valid && valid.payload
     ? NextResponse.redirect(new URL("/user/dashboard", req.url))
     : NextResponse.next();
@@ -35,7 +35,7 @@ const handleApiRoutes = async (req: NextRequest) => {
 
 const handleDashboardRoute = async (req: NextRequest) => {
   const token = req.cookies.get("token")?.value as string;
-  console.log(token);
+  // console.log(token);
   const valid = await verifyToken(token);
   return valid.valid && valid.payload
     ? NextResponse.next()
