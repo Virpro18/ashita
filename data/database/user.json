@@ -1,14 +1,16 @@
 {
   "data": [
     {
-      "id": 1,
+      "id": "fasdf43asf4q",
       "name": "admin",
-      "password": "admin"
+      "password": "admin",
+      "role": "admin"
     },
     {
-      "id": 2,
+      "id": "fa3423fsgsd",
       "name": "ok",
-      "password": "admin"
+      "password": "admin",
+      "role": "admin"
     }
   ]
 }

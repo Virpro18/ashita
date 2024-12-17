@@ -1,6 +1,6 @@
 import search from "@/utils/search";
 import { NextResponse, NextRequest } from "next/server";
-import { signToken, verifyToken } from "@/utils/joseAuth";
+import { signToken } from "@/utils/joseAuth";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -18,11 +18,11 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({}, { status: 404 });
     }
     const { name } = data;
-    const token = await signToken(name)
+    const token = await signToken(name,24)
 
-    const verify = await verifyToken(token)
-    console.log(verify)
-    const response = NextResponse.json({ status: 200 })
+    // const verify = await verifyToken(token)
+    // console.log(verify)
+    const response = NextResponse.json({name, status: 200 })
      response.cookies.set("token", token, {
       httpOnly: true,
       secure: true,

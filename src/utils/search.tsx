@@ -2,6 +2,7 @@ import readJson from "./readJson";
 import { ProjectData_SubData, UserType } from "@/types/database";
 
 interface user {
+  id:string
   name: string;
   password: string;
 }

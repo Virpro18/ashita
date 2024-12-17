@@ -5,11 +5,11 @@ const secret = new TextEncoder().encode(
 );
 console.log(secret)
 
-export const signToken = async (user: string) => {
+export const signToken = async (user: string, time:number) => {
   const token = await new jose.SignJWT({ user })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("2h")
+    .setExpirationTime(`${time}h`)
     .sign(secret);
   return token;
 };

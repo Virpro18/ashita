@@ -37,7 +37,6 @@ const handleDashboardRoute = async (req: NextRequest) => {
   const token = req.cookies.get("token")?.value as string;
   console.log(token);
   const valid = await verifyToken(token);
-  console.log(valid);
   return valid.valid && valid.payload
     ? NextResponse.next()
     : NextResponse.redirect(new URL("/user/account/login", req.url));
@@ -58,7 +57,7 @@ export const middleware = async (req: NextRequest) => {
     return handleLoginRoute(req);
   }
 
-  if (pathname.startsWith("/user/dashboard")) {
+  if (pathname.startsWith("/user")) {
     return handleDashboardRoute(req);
   }
 
