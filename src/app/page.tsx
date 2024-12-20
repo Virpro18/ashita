@@ -8,8 +8,12 @@ export default async function Home() {
   // console.log(data);
   return (
     <>
-      <h1>fasdfasdfasd</h1>
+      <h1 className="font-bold text-2xl font-sans text-center text-color-tertiary">
+        Projects
+      </h1>
+      <div className="grid md:grid-cols-[repeat(4,minmax(300px,1fr))] sm:grid-cols-2 grid-cols-1 gap-4 p-4">
       <Cards data={data} />
+      </div>
     </>
   );
 }
