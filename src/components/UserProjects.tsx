@@ -11,6 +11,7 @@ interface CardsProps {
 
 function Cards({ data }: CardsProps) {
   const [cards, setCards] = useState<ProjectData_SubData[]>(data);
+  // const [confirmation, setConfirmation] = useState<boolean>(false)
   const [isEditing, setIsEditing] = useState(false);
   const [editingData, setEditingData] = useState<ProjectData_SubData | null>(
     null

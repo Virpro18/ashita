@@ -26,7 +26,6 @@ export interface ProjectData_SubData {
   title: string;
   description: string;
   creator: string;
-  imageUrl: string;
   projectURL: string;
   date: string;
 }
