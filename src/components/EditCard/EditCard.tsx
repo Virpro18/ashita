@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { ProjectData_SubData } from "@/types/database";
+import { fetchServer } from "@/utils/fetch";
 
 type setState<T> = Dispatch<SetStateAction<T>>;
 
@@ -31,13 +32,16 @@ const EditCard = ({
   }
 
   // Submit perubahan
-function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault(); // Prevent default form submission
   edit((prev) =>
     prev.map((item) =>
       item.id === localData.id ? { ...item, ...localData } : item
     )
   );
+  // console.log("LocalData: ",localData)
+  const data = await fetchServer("https://vferdi7.vercel.app","/api/update","PUT",localData)
+  console.log(data)
   close(false); // Close the form  
 }
 

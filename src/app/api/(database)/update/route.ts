@@ -4,20 +4,22 @@ import { writeToJSON } from "@/utils/writeJson";
 import { NextRequest, NextResponse } from "next/server";
 
 interface Datas {
-  database: string;
-  projectData: Partial<ProjectData_SubData>;
-  creator: string;
-  id: string;
+  datas: {
+    data:  ProjectData_SubData;
+    database: string;
+  };
 }
 
 export const PUT = async (req: NextRequest) => {
   try {
-    const datas: Datas = await req.json();
+    const { datas }: Datas = await req.json();
+    // console.log('datas yang di terima: ',datas)
+    // cons
 
     // Search for data in the specified database
     const find = search(datas.database);
-    const data = find.findDataByKey(datas.creator, "creator");
-    const fullData = find.all()
+    const data = find.findDataByKey(datas.data.creator, "creator");
+    const fullData = find.all();
 
     if (!data) {
       return NextResponse.json({ data: "kosong" }, { status: 404 });
@@ -30,22 +32,24 @@ export const PUT = async (req: NextRequest) => {
       const prevData = data.find((item) => {
         // console.log("item data: ", item);
         // console.log("status: ", item.id === datas.id);
-        return item.id === datas.id;
+        return item.id === datas.data.id;
       });
-      const index: number = fullData.findIndex((item: ProjectData_SubData) => item.id === datas.id);
-      // console.log('index: ',index)
+      const index: number = fullData.findIndex(
+        (item: ProjectData_SubData) => item.id === datas.data.id
+      );
+      console.log("index: ", index);
 
-      fullData[index] = { ...fullData[index], ...datas.projectData };
-      // console.log('fullData: ',fullData)
-      // console.log(prevData);
-      // console.log(data)
+      fullData[index] = { ...fullData[index], ...datas.data };
+      console.log("fullData: ", fullData);
+      console.log("prevData: ", prevData);
+      console.log("data: ", data);
 
       if (!prevData) {
         return NextResponse.json({ data: "kosong" }, { status: 404 });
       }
       // console.log("Data Recieved:", datas);
       // const updatedData = { ...prevData, ...datas };
-      writeToJSON(datas.database, fullData,datas.id);
+      writeToJSON(datas.database, fullData);
       return NextResponse.json(fullData, { status: 200 });
     }
 

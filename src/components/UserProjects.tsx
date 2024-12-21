@@ -30,10 +30,10 @@ function Cards({ data }: CardsProps) {
       setIsEditing(true);
     }
   };
-  console.log("cardsDatas")
-  console.info(cards)
-  console.log("editData: ")
-  console.info(editingData);
+  // console.log("cardsDatas")
+  // console.info(cards)
+  // console.log("editData: ")
+  // console.info(editingData);
 
   return (
     <>

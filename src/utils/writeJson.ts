@@ -1,4 +1,3 @@
-import { ProjectData_SubData } from "@/types/database";
 import fs from "fs";
 import path from "path";
 
@@ -11,7 +10,6 @@ import path from "path";
 export async function writeToJSON(
   database: string,
   data: unknown,
-  id: string
 ): Promise<void> {
   try {
     // Construct the JSON file path dynamically
