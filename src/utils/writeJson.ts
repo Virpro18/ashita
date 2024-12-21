@@ -10,16 +10,17 @@ import path from "path";
 export async function writeToJSON(
   database: string,
   data: unknown
-): Promise<void> {
+): Promise<string> {
   try {
     const isVercel = !!process.env.VERCEL;
 
     const basePath = isVercel ? "/tmp" : path.join(process.cwd(), "data/database");
     const jsonPath = path.join(basePath, `${database}.json`);
 
-    await fs.promises.writeFile(jsonPath, JSON.stringify(data, null, 2), "utf-8");
+    fs.promises.writeFile(jsonPath, JSON.stringify(data, null, 2), "utf-8");
 
     console.log(`File successfully written to ${jsonPath}`);
+    return `File successfully written to ${jsonPath}`;
   } catch (error) {
     console.error("Error writing to JSON file:", error);
     throw new Error("Failed to write to JSON file");
