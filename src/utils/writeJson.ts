@@ -9,16 +9,15 @@ import path from "path";
  */
 export async function writeToJSON(
   database: string,
-  data: unknown,
+  data: unknown
 ): Promise<void> {
   try {
-    // Construct the JSON file path dynamically
-    const jsonPath = path.join(
-      process.cwd(),
-      "data/database",
-      `${database}.json`
-    );
-    await fs.promises.writeFile(jsonPath, JSON.stringify(data), "utf-8");
+    const isVercel = !!process.env.VERCEL;
+
+    const basePath = isVercel ? "/tmp" : path.join(process.cwd(), "data/database");
+    const jsonPath = path.join(basePath, `${database}.json`);
+
+    await fs.promises.writeFile(jsonPath, JSON.stringify(data, null, 2), "utf-8");
 
     console.log(`File successfully written to ${jsonPath}`);
   } catch (error) {
