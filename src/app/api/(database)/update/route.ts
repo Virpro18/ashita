@@ -28,8 +28,9 @@ export const PUT = async (req: NextRequest) => {
 
     otherData.datas[index] = { ...otherData.datas[index], ...datas.data };
     console.log("otherData: ", otherData);
-    const message = writeToJSON(datas.database, otherData);
-    return NextResponse.json({otherData,message}, { status: 200 });
+    const message = await writeToJSON(datas.database, otherData);
+    const checkData = readJson(datas.database)
+    return NextResponse.json({checkData,message}, { status: 200 });
   } catch (error) {
     console.error("Error handling PUT request:", error);
     return NextResponse.json(
