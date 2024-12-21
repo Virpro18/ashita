@@ -17,7 +17,7 @@ export async function writeToJSON(
     const basePath = isVercel ? "/tmp" : path.join(process.cwd(), "data/database");
     const jsonPath = path.join(basePath, `${database}.json`);
 
-    fs.promises.writeFile(jsonPath, JSON.stringify(data, null, 2), "utf-8");
+    await fs.promises.writeFile(jsonPath, JSON.stringify(data, null, 2), "utf-8");
 
     console.log(`File successfully written to ${jsonPath}`);
     return `File successfully written to ${jsonPath}`;
