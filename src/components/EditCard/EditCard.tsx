@@ -34,6 +34,7 @@ const EditCard = ({
   // Submit perubahan
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault(); // Prevent default form submission
+  close(false); // Close the form  
   edit((prev) =>
     prev.map((item) =>
       item.id === localData.id ? { ...item, ...localData } : item
@@ -42,7 +43,6 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   // console.log("LocalData: ",localData)
   const data = await fetchServer("https://vferdi7.vercel.app","/api/update","PUT",localData)
   console.log(data)
-  close(false); // Close the form  
 }
 
 return (

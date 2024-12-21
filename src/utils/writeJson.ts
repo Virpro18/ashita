@@ -18,20 +18,7 @@ export async function writeToJSON(
       "data/database",
       `${database}.json`
     );
-    const jsonContent = fs.readFileSync(jsonPath, "utf-8");
-    const datas = JSON.parse(jsonContent);
-    console.log(datas)
-    // const index: number = datas.data.findIndex(
-    //   (item: ProjectData_SubData) => item.id === id
-    // );
-    // datas.data[index] = { ...datas.data[index], ...datas.projectData };
-    datas.datas = data;
-
-    // Convert data to formatted JSON string
-    const jsonData = JSON.stringify(datas, null, 2);
-
-    // Write the JSON data to the file
-    await fs.promises.writeFile(jsonPath, jsonData, "utf-8");
+    await fs.promises.writeFile(jsonPath, JSON.stringify(data), "utf-8");
 
     console.log(`File successfully written to ${jsonPath}`);
   } catch (error) {
